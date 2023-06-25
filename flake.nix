@@ -23,7 +23,7 @@
 				inherit system;
 				modules = [ 
 					./configuration.nix 
-					./home-manager.nixosModules.home-manager {
+					home-manager.nixosModules.home-manager {
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
 						home-manager.users.daniele = {
@@ -34,21 +34,6 @@
 					}
 				];
 			};
-		};
-		hmConfig = {
-			daniele = home-manager.lib.homeManagerConfiguration {
-				pkgs = nixpkgs.legacyPackages.${system};
-				modules = [ 
-					./home.nix 
-					{
-						home = {
-							username = "daniele";
-							homeDirectory = "/home/daniele";
-							stateVersion = "22.11";
-						};
-					}
-				];
-			};	
 		};
 	};
 }
