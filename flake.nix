@@ -21,7 +21,18 @@
 		nixosConfigurations = {
 			daniele = lib.nixosSystem {
 				inherit system;
-				modules = [ ./configuration.nix ];
+				modules = [ 
+					./configuration.nix 
+					./home-manager.nixosModules.home-manager {
+						home-manager.useGlobalPkgs = true;
+						home-manager.useUserPackages = true;
+						home-manager.users.daniele = {
+							imports = [ ./home.nix ];
+
+						};
+
+					}
+				];
 			};
 		};
 		hmConfig = {
